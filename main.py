@@ -41,6 +41,19 @@ def main():
                 pygame.quit()
                 sys.exit()
 
+        for asteroid in asteroids:
+            if not asteroid.alive():
+               continue
+
+            for shot in shots:
+                if not shot.alive():
+                   continue
+
+                if asteroid.collides_with(shot):
+                   shot.kill()
+                   asteroid.kill()
+                   break  # Stop checking other shots for this asteroid     
+
         screen.fill("black")
 
         for obj in drawable:
