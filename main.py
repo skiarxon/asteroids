@@ -18,6 +18,7 @@ def main():
     dt = 0
     score = 0
     score_increment = 10
+    bg_image = pygame.image.load('bg.jpg')
 
     updatable = pygame.sprite.Group() # group for things that will be updated on screen
     drawable = pygame.sprite.Group() # group for things that are going to be drawn on screen
@@ -34,10 +35,11 @@ def main():
 
     while True:
         font = pygame.font.Font(None, 36)
+        screen.fill("black")
+        screen.blit(bg_image, (0, 0))
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
-
         updatable.update(dt)
 
         for asteroid in asteroids:
@@ -60,7 +62,7 @@ def main():
                    score += score_increment 
                    break  # Stop checking other shots for this asteroid     
 
-        screen.fill("black")
+        #screen.fill("black")
 
         score_text = font.render(f'Score: {score}', True, ("white"))
         screen.blit(score_text, (10, 10))
